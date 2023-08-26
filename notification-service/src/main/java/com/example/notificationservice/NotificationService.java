@@ -1,13 +1,13 @@
-package com.example.eventdrivenarchpubsub;
+package com.example.notificationservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EventDrivenArchPubsubApplication {
+public class NotificationService {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EventDrivenArchPubsubApplication.class, args);
+		SpringApplication.run(NotificationService.class, args);
 	}
 
 }

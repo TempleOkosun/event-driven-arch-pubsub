@@ -16,7 +16,9 @@
 	<description>event-driven-arch-pubsub</description>
     <modules>
         <module>publisher</module>
-    </modules>
+		<module>order-service</module>
+		<module>notification-service</module>
+	</modules>
     <properties>
 		<java.version>17</java.version>
 		<spring-cloud-gcp.version>4.7.2</spring-cloud-gcp.version>

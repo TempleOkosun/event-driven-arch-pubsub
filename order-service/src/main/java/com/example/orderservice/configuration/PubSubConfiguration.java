@@ -24,9 +24,6 @@ public class PubSubConfiguration {
     @Value("${pubsub.subscription-id}")
     private String subscriptionId;
 
-    @Value("${pubsub.topic-id}")
-    private String topicId;
-
     @Bean("pubSubInputChannel")
     public DirectChannel pubSubInputChannel() {
         return new DirectChannel();

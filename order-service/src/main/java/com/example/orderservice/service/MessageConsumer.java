@@ -10,6 +10,7 @@ public class MessageConsumer {
 
     public void consume(BasicAcknowledgeablePubsubMessage message) {
         log.info("Message received from PubSub in Order Service : {}", message.getPubsubMessage());
+        log.info("Message received from PubSub in Order Service-2 : {}", message.getPubsubMessage().getData().toStringUtf8());
         message.ack();
     }
 }

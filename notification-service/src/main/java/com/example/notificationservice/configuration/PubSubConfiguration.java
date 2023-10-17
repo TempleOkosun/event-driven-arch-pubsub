@@ -23,10 +23,6 @@ public class PubSubConfiguration {
     @Value("${pubsub.subscription-id}")
     private String subscriptionId;
 
-    // topic
-    @Value("${pubsub.topic-id}")
-    private String topicId;
-
     // a message channel for messages arriving from the subscription
     @Bean
     public MessageChannel pubSubInputChannel() {
@@ -48,19 +44,7 @@ public class PubSubConfiguration {
     // service activator - defines what happens to the messages arriving in the message channel.
     @ServiceActivator(inputChannel = "pubSubInputChannel")
     public void messageReceiver(String payload, @Header(GcpPubSubHeaders.ORIGINAL_MESSAGE) BasicAcknowledgeablePubsubMessage message) {
-        log.info("Message arrived via an inbound channel adapter from sub: {}! Payload: {}", subscriptionId, payload);
+        log.info("Message arrived via an inbound channel adapter, activator-1 from sub: {}! Payload: {}", subscriptionId, payload);
         message.ack();
     }
-
-//    @Bean
-//    @ServiceActivator(inputChannel = "pubsubInputChannel")
-//    public MessageHandler messageReceiver() {
-//        return message -> {
-//            log.info("Message arrived! Payload: " + new String((byte[]) message.getPayload()));
-//            BasicAcknowledgeablePubsubMessage originalMessage =
-//                    message.getHeaders().get(GcpPubSubHeaders.ORIGINAL_MESSAGE, BasicAcknowledgeablePubsubMessage.class);
-//            originalMessage.ack();
-//        };
-//    }
-
 }

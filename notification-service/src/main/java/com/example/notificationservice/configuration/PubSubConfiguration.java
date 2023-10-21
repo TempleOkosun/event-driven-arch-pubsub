@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.integration.channel.PublishSubscribeChannel;
+import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.handler.annotation.Header;
 
@@ -23,10 +23,19 @@ public class PubSubConfiguration {
     @Value("${pubsub.subscription-id}")
     private String subscriptionId;
 
+    // subscription
+    @Value("${pubsub.subscription-id2}")
+    private String subscriptionId2;
+
     // a message channel for messages arriving from the subscription
-    @Bean
-    public MessageChannel pubSubInputChannel() {
-        return new PublishSubscribeChannel();
+//    @Bean
+//    public MessageChannel pubSubInputChannel() {
+//        return new PublishSubscribeChannel();
+//    }
+
+    @Bean("pubSubInputChannel")
+    public DirectChannel pubSubInputChannel() {
+        return new DirectChannel();
     }
 
     // an inbound channel adapter to listen to the subscription &
@@ -40,11 +49,22 @@ public class PubSubConfiguration {
         return adapter;
     }
 
+    @Bean
+    public PubSubInboundChannelAdapter messageChannelAdapter2(@Qualifier("pubSubInputChannel") MessageChannel inputChannel, PubSubTemplate pubSubTemplate) {
+        PubSubInboundChannelAdapter adapter = new PubSubInboundChannelAdapter(pubSubTemplate, subscriptionId2);
+        adapter.setOutputChannel(inputChannel);
+        adapter.setAckMode(AckMode.MANUAL);
+        adapter.setPayloadType(String.class);
+        return adapter;
+    }
+
 
     // service activator - defines what happens to the messages arriving in the message channel.
     @ServiceActivator(inputChannel = "pubSubInputChannel")
-    public void messageReceiver(String payload, @Header(GcpPubSubHeaders.ORIGINAL_MESSAGE) BasicAcknowledgeablePubsubMessage message) {
-        log.info("Message arrived via an inbound channel adapter, activator-1 from sub: {}! Payload: {}", subscriptionId, payload);
+    public void messageReceiver(String payload, @Header(GcpPubSubHeaders.ORIGINAL_MESSAGE) BasicAcknowledgeablePubsubMessage message
+    ) {
+        log.info("Message arrived via an inbound channel adapter, from Sub:{}, Payload: {}", message.getProjectSubscriptionName(), payload);
         message.ack();
+
     }
 }

@@ -27,7 +27,7 @@ public class MessagePublisher {
         defaultMessageSender.handleMessage(message);
 
         // filter has been set on subscription to receive just the messages with the notification header.
-        Product product1 = Product.builder().id(101).name("Running Shoes").description("Adult size.").build();
+        Product product1 = Product.builder().id(101).name("Running Shoe").description("Adult size.").build();
         String jsonString1 = objectMapper.writeValueAsString(product1);
         Message<ByteString> message1 = MessageBuilder.withPayload(ByteString.copyFromUtf8(jsonString1))
                 .setHeader("FROM_SERVICE", "PUBLISHER")

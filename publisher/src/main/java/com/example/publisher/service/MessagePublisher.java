@@ -21,7 +21,7 @@ public class MessagePublisher {
     private final ObjectMapper objectMapper;
 
     public void sendMessageToPubSub() throws JsonProcessingException {
-        Product product = Product.builder().id(100).name("Cricket Bat").description("Suitable for kids").build();
+        Product product = Product.builder().id(100).name("Cricket Ball").description("Suitable for kids").build();
         String jsonString = objectMapper.writeValueAsString(product);
         Message<ByteString> message = MessageBuilder.withPayload(ByteString.copyFromUtf8(jsonString)).build();
         defaultMessageSender.handleMessage(message);

@@ -1,10 +1,10 @@
-package com.example.notificationservice;
+package com.example.publisher;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NotificationServiceTests {
+class PublisherCloudEventsTests {
 
 	@Test
 	void contextLoads() {

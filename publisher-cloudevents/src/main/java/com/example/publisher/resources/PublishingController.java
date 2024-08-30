@@ -5,22 +5,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import lombok.RequiredArgsConstructor;
-import com.example.publisher.service.MessagePublisher;
+import com.example.publisher.service.MessageService;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class ApplicationResources {
-
-    private final MessagePublisher messagePublisher;
+public class PublishingController {
+    private final MessageService messageService;
 
 
     @RequestMapping("/publish")
-    public ResponseEntity<String> testPublish() throws JsonProcessingException {
-        messagePublisher.sendMessageToPubSub();
+    public ResponseEntity<String> testPublish(){
+        messageService.sendMessageToPubSub();
         return new ResponseEntity<>("SUCCESS", HttpStatus.CREATED);
     }
 }

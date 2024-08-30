@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.2</version>
+        <version>3.3.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
@@ -18,21 +18,17 @@
         <module>publisher</module>
         <module>order-service</module>
         <module>notification-service</module>
+        <module>publisher-cloudevents</module>
     </modules>
     <properties>
         <java.version>21</java.version>
-        <spring-cloud-gcp.version>5.0.0</spring-cloud-gcp.version>
-        <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <spring-cloud-gcp.version>5.6.0</spring-cloud-gcp.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-test-binder</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
     <dependencyManagement>

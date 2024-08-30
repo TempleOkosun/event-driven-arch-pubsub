@@ -3,6 +3,7 @@ package com.example.publisher.configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.MessageHandler;
@@ -33,11 +34,8 @@ public class PubSubConfiguration {
         adapter.setSuccessCallback(
                 ((ackId, message) ->
                         log.info("Message was sent via the outbound channel adapter to: {}!", topicId)));
-
         adapter.setFailureCallback(
-                (cause, message) -> log.info("Error sending " + message + " due to " + cause));
-
+                (cause, message) -> log.info("Error sending {} due to ", message, cause));
         return adapter;
     }
-
 }

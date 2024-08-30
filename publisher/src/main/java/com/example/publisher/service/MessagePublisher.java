@@ -1,6 +1,8 @@
 package com.example.publisher.service;
 
+import com.example.publisher.Publisher;
 import com.example.publisher.model.Product;
+import com.google.pubsub.v1.PubsubMessage;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHandler;
@@ -12,6 +14,8 @@ import com.google.protobuf.ByteString;
 
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -34,5 +38,11 @@ public class MessagePublisher {
                 .setHeader("TO_SERVICE", "NOTIFICATION_SERVICE")
                 .build();
         defaultMessageSender.handleMessage(message1);
+
+//        //
+//        var headers = Map.of("FROM_SERVICE", "PUBLISHER_2", "TO_SERVICE", "NOTIFICATION_SERVICE_2" );
+//        ByteString data = ByteString.copyFromUtf8(jsonString1);
+//        PubsubMessage.Builder pubsubMessage = PubsubMessage.newBuilder().setData(data);
+//        defaultMessageSender.handleMessage((Message<?>) pubsubMessage.putAllAttributes(headers).build().getData());
     }
 }

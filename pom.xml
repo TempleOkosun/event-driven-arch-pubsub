@@ -18,6 +18,7 @@
         <module>publisher</module>
         <module>order-service</module>
         <module>notification-service</module>
+        <module>publisher-cloudevents</module>
     </modules>
     <properties>
         <java.version>21</java.version>

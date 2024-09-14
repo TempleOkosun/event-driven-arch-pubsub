@@ -1,6 +1,5 @@
 package com.example.publisher.service;
 
-import com.example.publisher.configuration.MessagePubsubGateway;
 import com.example.publisher.model.Product;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
@@ -20,7 +19,6 @@ public class MessagePublisher {
 
     private final MessageHandler defaultMessageSender;
     private final ObjectMapper objectMapper;
-//    private final MessagePubsubGateway messagePubsubGateway;
 
     public void sendMessageToPubSub() throws JsonProcessingException {
         Product product = Product.builder().id(100).name("Cricket Bat").description("Suitable for kids").build();
@@ -36,6 +34,12 @@ public class MessagePublisher {
                 .setHeader("TO_SERVICE", "NOTIFICATION_SERVICE")
                 .build();
         defaultMessageSender.handleMessage(message1);
+
+//        //
+//        var headers = Map.of("FROM_SERVICE", "PUBLISHER_2", "TO_SERVICE", "NOTIFICATION_SERVICE_2" );
+//        ByteString data = ByteString.copyFromUtf8(jsonString1);
+//        PubsubMessage.Builder pubsubMessage = PubsubMessage.newBuilder().setData(data);
+//        defaultMessageSender.handleMessage((Message<?>) pubsubMessage.putAllAttributes(headers).build().getData());
 
 //        messagePubsubGateway.send(jsonString1, "test-header");
 

@@ -1,4 +1,4 @@
-package com.example.publisher.model;
+package com.example.publishercloudevents.model;
 
 import lombok.Builder;
 import lombok.Data;

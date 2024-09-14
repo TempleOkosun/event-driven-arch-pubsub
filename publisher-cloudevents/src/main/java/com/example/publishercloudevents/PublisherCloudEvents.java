@@ -1,4 +1,4 @@
-package com.example.publisher;
+package com.example.publishercloudevents;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

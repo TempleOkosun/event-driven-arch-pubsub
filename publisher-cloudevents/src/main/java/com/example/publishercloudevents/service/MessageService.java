@@ -1,7 +1,7 @@
-package com.example.publisher.service;
+package com.example.publishercloudevents.service;
 
-import com.example.publisher.messaging.EventPublisher;
-import com.example.publisher.model.Product;
+import com.example.publishercloudevents.messaging.EventPublisher;
+import com.example.publishercloudevents.model.Product;
 import org.springframework.stereotype.Component;
 
 

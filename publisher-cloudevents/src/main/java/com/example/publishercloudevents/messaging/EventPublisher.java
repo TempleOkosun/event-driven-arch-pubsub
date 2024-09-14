@@ -1,4 +1,4 @@
-package com.example.publisher.messaging;
+package com.example.publishercloudevents.messaging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.pubsub.v1.Publisher;
